@@ -193,6 +193,7 @@ public class Util extends javax.swing.JFrame {
 
         jLabel14.setText("Função a bordo");
 
+        txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         txtData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataActionPerformed(evt);
