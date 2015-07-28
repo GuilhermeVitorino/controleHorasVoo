@@ -50,7 +50,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+      <Color blue="0" green="0" red="0" type="rgb"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -92,11 +92,7 @@
               </Group>
           </Group>
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLayeredPanePesquisaDetalhada" pref="827" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jLayeredPanePesquisaDetalhada" alignment="0" pref="907" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -563,7 +559,7 @@
                       <Component id="label2" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                       <Component id="jScrollPaneTotais" alignment="0" min="-2" pref="737" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="150" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -661,7 +657,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPaneRegistros1" alignment="0" pref="757" max="32767" attributes="0"/>
+                      <Component id="jScrollPaneRegistros1" alignment="0" pref="887" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="label5" min="-2" pref="153" max="-2" attributes="0"/>
@@ -698,7 +694,7 @@
                   <Component id="label5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="jScrollPaneRegistros1" min="-2" pref="114" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="233" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="217" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -747,7 +743,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDataPeriodo1ActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{  &#xd;&#xa;   javax.swing.text.MaskFormatter horaMin = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);  &#xd;&#xa;   txtData = new javax.swing.JFormattedTextField(horaMin);  &#xd;&#xa;}  &#xd;&#xa;   catch (Exception e){  &#xd;&#xa;} "/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{  &#xd;&#xa;   javax.swing.text.MaskFormatter horaMin = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);  &#xd;&#xa;   txtDataPeriodo1 = new javax.swing.JFormattedTextField(horaMin);  &#xd;&#xa;}  &#xd;&#xa;   catch (Exception e){  &#xd;&#xa;} "/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtDataPeriodo2">
@@ -758,7 +754,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDataPeriodo2ActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{  &#xd;&#xa;   javax.swing.text.MaskFormatter horaMin = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);  &#xd;&#xa;   txtData = new javax.swing.JFormattedTextField(horaMin);  &#xd;&#xa;}  &#xd;&#xa;   catch (Exception e){  &#xd;&#xa;} "/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{  &#xd;&#xa;   javax.swing.text.MaskFormatter horaMin = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);  &#xd;&#xa;   txtDataPeriodo2 = new javax.swing.JFormattedTextField(horaMin);  &#xd;&#xa;}  &#xd;&#xa;   catch (Exception e){  &#xd;&#xa;} "/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnPesquisarPeriodo">

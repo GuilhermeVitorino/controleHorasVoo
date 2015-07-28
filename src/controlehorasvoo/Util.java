@@ -143,14 +143,14 @@ public class Util extends javax.swing.JFrame {
         txtDataPeriodo1 = new javax.swing.JFormattedTextField();
         try{  
             javax.swing.text.MaskFormatter horaMin = new javax.swing.text.MaskFormatter("##/##/####");  
-            txtData = new javax.swing.JFormattedTextField(horaMin);  
+            txtDataPeriodo1 = new javax.swing.JFormattedTextField(horaMin);  
         }  
         catch (Exception e){  
         }
         txtDataPeriodo2 = new javax.swing.JFormattedTextField();
         try{  
             javax.swing.text.MaskFormatter horaMin = new javax.swing.text.MaskFormatter("##/##/####");  
-            txtData = new javax.swing.JFormattedTextField(horaMin);  
+            txtDataPeriodo2 = new javax.swing.JFormattedTextField(horaMin);  
         }  
         catch (Exception e){  
         }
@@ -166,7 +166,7 @@ public class Util extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(0, 0, 0));
 
         jLayeredPaneCadastro.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -498,7 +498,7 @@ public class Util extends javax.swing.JFrame {
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPaneTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 150, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
         jLayeredPaneRelatorioLayout.setVerticalGroup(
             jLayeredPaneRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -567,7 +567,7 @@ public class Util extends javax.swing.JFrame {
             .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
                     .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
                         .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -596,7 +596,7 @@ public class Util extends javax.swing.JFrame {
                 .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 233, Short.MAX_VALUE))
+                .addGap(0, 217, Short.MAX_VALUE))
         );
         jLayeredPanePesquisaDetalhada.setLayer(jScrollPaneRegistros1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPanePesquisaDetalhada.setLayer(label3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -655,10 +655,7 @@ public class Util extends javax.swing.JFrame {
                     .addComponent(jLayeredPaneRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLayeredPanePesquisaDetalhada, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
-                    .addGap(70, 70, 70)))
+                .addComponent(jLayeredPanePesquisaDetalhada, javax.swing.GroupLayout.DEFAULT_SIZE, 907, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -967,7 +964,7 @@ public class Util extends javax.swing.JFrame {
             tblRegistrosDetalhados.setModel(model);
 
             RegistroDao list = new RegistroDao();
-            regs = list.getLista();
+            regs = list.getListaDetalhada(txtDataPeriodo1.getText(), txtDataPeriodo2.getText());
 
             for (Registro x : regs) {
 
