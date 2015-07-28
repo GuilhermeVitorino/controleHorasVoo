@@ -193,7 +193,7 @@ public class Util extends javax.swing.JFrame {
 
         jLabel14.setText("Função a bordo");
 
-        txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         txtData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataActionPerformed(evt);
@@ -541,6 +541,7 @@ public class Util extends javax.swing.JFrame {
         label5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label5.setText("Registros Lançados");
 
+        txtDataPeriodo1.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         txtDataPeriodo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataPeriodo1ActionPerformed(evt);
@@ -548,6 +549,7 @@ public class Util extends javax.swing.JFrame {
         });
 
         txtDataPeriodo2.setToolTipText("");
+        txtDataPeriodo2.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         txtDataPeriodo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataPeriodo2ActionPerformed(evt);
@@ -812,6 +814,7 @@ public class Util extends javax.swing.JFrame {
     private void jMenuItemCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroActionPerformed
         // TODO add your handling code here:       
         jLayeredPaneRelatorio.setVisible(false);
+        jLayeredPanePesquisaDetalhada.setVisible(false);
         jLayeredPaneCadastro.setVisible(true);
         
     }//GEN-LAST:event_jMenuItemCadastroActionPerformed
