@@ -135,12 +135,33 @@ public class Util extends javax.swing.JFrame {
         tblTotais = new javax.swing.JTable();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
+        jLayeredPanePesquisaDetalhada = new javax.swing.JLayeredPane();
+        jScrollPaneRegistros1 = new javax.swing.JScrollPane();
+        tblRegistrosDetalhados = new javax.swing.JTable();
+        label3 = new java.awt.Label();
+        label5 = new java.awt.Label();
+        txtDataPeriodo1 = new javax.swing.JFormattedTextField();
+        try{  
+            javax.swing.text.MaskFormatter horaMin = new javax.swing.text.MaskFormatter("##/##/####");  
+            txtData = new javax.swing.JFormattedTextField(horaMin);  
+        }  
+        catch (Exception e){  
+        }
+        txtDataPeriodo2 = new javax.swing.JFormattedTextField();
+        try{  
+            javax.swing.text.MaskFormatter horaMin = new javax.swing.text.MaskFormatter("##/##/####");  
+            txtData = new javax.swing.JFormattedTextField(horaMin);  
+        }  
+        catch (Exception e){  
+        }
+        btnPesquisarPeriodo = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItemCadastro = new javax.swing.JMenuItem();
         jMenuItemRelatorios = new javax.swing.JMenuItem();
+        jMenuItemPesquisaDetalhada = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -409,13 +430,13 @@ public class Util extends javax.swing.JFrame {
         jLayeredPaneCadastroLayout.setHorizontalGroup(
             jLayeredPaneCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPaneCadastroLayout.createSequentialGroup()
-                .addContainerGap(88, Short.MAX_VALUE)
+                .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(jLayeredPaneCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPaneCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jLayeredPaneCadastroLayout.setVerticalGroup(
             jLayeredPaneCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +498,7 @@ public class Util extends javax.swing.JFrame {
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPaneTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 88, Short.MAX_VALUE))
+                .addGap(0, 150, Short.MAX_VALUE))
         );
         jLayeredPaneRelatorioLayout.setVerticalGroup(
             jLayeredPaneRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,6 +516,94 @@ public class Util extends javax.swing.JFrame {
         jLayeredPaneRelatorio.setLayer(jScrollPaneTotais, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneRelatorio.setLayer(label1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneRelatorio.setLayer(label2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPanePesquisaDetalhada.setBackground(new java.awt.Color(255, 255, 255));
+        jLayeredPanePesquisaDetalhada.setPreferredSize(new java.awt.Dimension(777, 443));
+
+        tblRegistrosDetalhados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblRegistrosDetalhados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPaneRegistros1.setViewportView(tblRegistrosDetalhados);
+
+        label3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label3.setText("Período:");
+
+        label5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label5.setText("Registros Lançados");
+
+        txtDataPeriodo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataPeriodo1ActionPerformed(evt);
+            }
+        });
+
+        txtDataPeriodo2.setToolTipText("");
+        txtDataPeriodo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataPeriodo2ActionPerformed(evt);
+            }
+        });
+
+        btnPesquisarPeriodo.setText("Pesquisar");
+        btnPesquisarPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarPeriodoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jLayeredPanePesquisaDetalhadaLayout = new javax.swing.GroupLayout(jLayeredPanePesquisaDetalhada);
+        jLayeredPanePesquisaDetalhada.setLayout(jLayeredPanePesquisaDetalhadaLayout);
+        jLayeredPanePesquisaDetalhadaLayout.setHorizontalGroup(
+            jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
+                    .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
+                        .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
+                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDataPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDataPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPesquisarPeriodo)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jLayeredPanePesquisaDetalhadaLayout.setVerticalGroup(
+            jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtDataPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDataPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPesquisarPeriodo)))
+                .addGap(15, 15, 15)
+                .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 233, Short.MAX_VALUE))
+        );
+        jLayeredPanePesquisaDetalhada.setLayer(jScrollPaneRegistros1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPanePesquisaDetalhada.setLayer(label3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPanePesquisaDetalhada.setLayer(label5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPanePesquisaDetalhada.setLayer(txtDataPeriodo1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPanePesquisaDetalhada.setLayer(txtDataPeriodo2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPanePesquisaDetalhada.setLayer(btnPesquisarPeriodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setText("jButton1");
 
@@ -516,6 +625,14 @@ public class Util extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItemRelatorios);
 
+        jMenuItemPesquisaDetalhada.setText("Pesquisa Detalhada");
+        jMenuItemPesquisaDetalhada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPesquisaDetalhadaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItemPesquisaDetalhada);
+
         jMenuBar.add(jMenu4);
 
         setJMenuBar(jMenuBar);
@@ -535,8 +652,13 @@ public class Util extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLayeredPaneRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+                    .addComponent(jLayeredPaneRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLayeredPanePesquisaDetalhada, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+                    .addGap(70, 70, 70)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,12 +666,17 @@ public class Util extends javax.swing.JFrame {
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLayeredPaneCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(81, 81, 81)
                     .addComponent(jLayeredPaneRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(91, Short.MAX_VALUE)))
+                    .addContainerGap(196, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(80, 80, 80)
+                    .addComponent(jLayeredPanePesquisaDetalhada, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(145, Short.MAX_VALUE)))
         );
 
         pack();
@@ -799,8 +926,93 @@ public class Util extends javax.swing.JFrame {
         }
         
         jLayeredPaneCadastro.setVisible(false);
-        jLayeredPaneRelatorio.setVisible(true);      
+        jLayeredPanePesquisaDetalhada.setVisible(false);
+        jLayeredPaneRelatorio.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItemRelatoriosActionPerformed
+
+    private void txtDataPeriodo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataPeriodo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataPeriodo1ActionPerformed
+
+    private void txtDataPeriodo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataPeriodo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataPeriodo2ActionPerformed
+
+    private void btnPesquisarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPeriodoActionPerformed
+
+        //Criacao das tabela
+        tblRegistrosDetalhados.setAutoResizeMode(tblRegistros.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPaneRegistros.setPreferredSize(jScrollPaneRegistros.getParent().getPreferredSize());
+
+        try{
+            //Cria uma instancia da classe registro
+            Registro reg = new Registro();
+            tblRegistrosDetalhados.removeAll();
+
+            this.connection = new ConnectionFactory().getConnection();
+            ArrayList<Registro> regs = new ArrayList<Registro>();
+            PreparedStatement stmt = (PreparedStatement) this.connection.
+            prepareStatement("select * from controlehoras");
+            ResultSet rs = stmt.executeQuery();
+
+            String[] colunas = new String[]{"Data", "Pousos", "Função a bordo", "Observações", "Simulador", "Matrícula",
+                "Aérodromo de Origem", "Aérodromo de Destino", "Diurno", "Noturno", "Navegação", "Instrumento Real", "Sob Capota"};
+            String[] linha = new String[13];
+
+            //"Model" para exibicao dos dados na tabela
+            DefaultTableModel model = new DefaultTableModel(null, colunas);
+
+            //Seta "model" como o modelo da tabela "tblResultado"
+            tblRegistrosDetalhados.setModel(model);
+
+            RegistroDao list = new RegistroDao();
+            regs = list.getLista();
+
+            for (Registro x : regs) {
+
+                Calendar cal = new GregorianCalendar();
+                cal = x.getData();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                dateFormat.setCalendar(cal);
+                linha[0] = (dateFormat.format(cal.getTime()));
+
+                String strPousos = ""+x.getPousos();
+                linha[1] = (strPousos);
+
+                linha[2] = (x.getFuncao());
+                linha[3] = (x.getObservacoes());
+                linha[4] = (x.getSimulador());
+                linha[5] = (x.getMatricula());
+                linha[6] = (x.getAerodromoOrigem());
+                linha[7] = (x.getAerodromoDestino());
+                linha[8] = (viewHours(x.getDiurno()));
+                linha[9] = (viewHours(x.getNoturno()));
+                linha[10] = (viewHours(x.getNavegacao()));
+                linha[11] = (viewHours(x.getInstrumento()));
+                linha[12] = (viewHours(x.getCapota()));
+
+                model.addRow(linha);
+            }
+
+            /*for(int i=0; i<13; i++){*/
+
+                //tblRegistros.getColumnModel().getColumn(5).setPreferredWidth(100);
+                /*}*/
+
+            tblRegistrosDetalhados.setFillsViewportHeight(true);
+
+        }catch(SQLException e){
+
+        }
+    }//GEN-LAST:event_btnPesquisarPeriodoActionPerformed
+
+    private void jMenuItemPesquisaDetalhadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPesquisaDetalhadaActionPerformed
+        // TODO add your handling code here:
+        jLayeredPaneCadastro.setVisible(false);
+        jLayeredPaneRelatorio.setVisible(false);
+        jLayeredPanePesquisaDetalhada.setVisible(true);
+    }//GEN-LAST:event_jMenuItemPesquisaDetalhadaActionPerformed
 
     private int stringToMinutes(String str){
        try{
@@ -845,12 +1057,14 @@ public class Util extends javax.swing.JFrame {
             public void run(){               
                 Util utl = new Util();
                 utl.jLayeredPaneRelatorio.setVisible(false);
+                utl.jLayeredPanePesquisaDetalhada.setVisible(false);
                 utl.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPesquisarPeriodo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxFuncao;
     private javax.swing.JComboBox cbxSimulador;
@@ -871,24 +1085,32 @@ public class Util extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPaneCadastro;
+    private javax.swing.JLayeredPane jLayeredPanePesquisaDetalhada;
     private javax.swing.JLayeredPane jLayeredPaneRelatorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItemCadastro;
+    private javax.swing.JMenuItem jMenuItemPesquisaDetalhada;
     private javax.swing.JMenuItem jMenuItemRelatorios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPaneRegistros;
+    private javax.swing.JScrollPane jScrollPaneRegistros1;
     private javax.swing.JScrollPane jScrollPaneTotais;
     private java.awt.Label label1;
     private java.awt.Label label2;
+    private java.awt.Label label3;
+    private java.awt.Label label5;
     private javax.swing.JTable tblRegistros;
+    private javax.swing.JTable tblRegistrosDetalhados;
     private javax.swing.JTable tblTotais;
     private javax.swing.JTextField txtAerodromoDestino;
     private javax.swing.JTextField txtAerodromoOrigem;
     private javax.swing.JFormattedTextField txtCapota;
     private javax.swing.JFormattedTextField txtData;
+    private javax.swing.JFormattedTextField txtDataPeriodo1;
+    private javax.swing.JFormattedTextField txtDataPeriodo2;
     private javax.swing.JFormattedTextField txtDiurno;
     private javax.swing.JFormattedTextField txtInstrumento;
     private javax.swing.JTextField txtMatricula;
