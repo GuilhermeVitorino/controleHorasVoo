@@ -196,4 +196,55 @@ public class RegistroDao {
                 throw new RuntimeException(e);		
         }
     }
+    
+    public ArrayList<Registro> getListaTotaisDetalhados(String dataInicio, String dataFim) {
+        try {
+                this.connection = new ConnectionFactory().getConnection();
+                ArrayList<Registro> regs = new ArrayList<Registro>();
+                PreparedStatement stmt = (PreparedStatement) this.connection.                               
+                   prepareStatement("SELECT SUM(diurno),SUM(noturno),SUM(navegacao),"
+                           + "SUM(instrumento_real),SUM(sob_capota) FROM controlehoras"
+                           + " where data between ? and ?");
+                
+                Calendar data1 = null;    
+                java.util.Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dataInicio);
+                data1 = Calendar.getInstance();
+                data1.setTime(date1);
+                
+                Calendar data2 = null;    
+                java.util.Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse(dataFim);
+                data2 = Calendar.getInstance();
+                data2.setTime(date2);
+                
+                stmt.setDate(1, new Date(
+                    data1.getTimeInMillis()));
+
+                stmt.setDate(2, new Date(
+                    data2.getTimeInMillis()));
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+
+                        // criando o objeto Contato
+                        Registro reg = new Registro();
+
+                        reg.setDiurno(rs.getInt("SUM(diurno)"));                              
+                        reg.setNoturno(rs.getInt("SUM(noturno)"));
+                        reg.setNavegacao(rs.getInt("SUM(navegacao)"));
+                        reg.setInstrumento(rs.getInt("SUM(instrumento_real)"));                                                              
+                        reg.setCapota(rs.getInt("SUM(sob_capota)"));
+
+                        regs.add(reg);
+                }
+                rs.close();
+                stmt.close();
+
+                return regs;
+        }catch(SQLException e){
+                throw new RuntimeException(e);		
+        } catch (ParseException ex) {
+            Logger.getLogger(RegistroDao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

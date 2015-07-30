@@ -5,6 +5,9 @@
  */
 package controlehorasvoo;
 
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -155,6 +161,9 @@ public class Util extends javax.swing.JFrame {
         catch (Exception e){  
         }
         btnPesquisarPeriodo = new javax.swing.JButton();
+        jScrollPaneTotais1 = new javax.swing.JScrollPane();
+        tblTotaisDetalhados = new javax.swing.JTable();
+        label4 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
@@ -167,11 +176,12 @@ public class Util extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(java.awt.Color.white);
 
         jLayeredPaneCadastro.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados de vôo"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)), "Dados de vôo"));
         jPanel1.setName(""); // NOI18N
 
         cbxSimulador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Sim", "Não" }));
@@ -264,7 +274,7 @@ public class Util extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tempo de vôo"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)), "Tempo de vôo"));
 
         txtAerodromoDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,13 +441,13 @@ public class Util extends javax.swing.JFrame {
         jLayeredPaneCadastroLayout.setHorizontalGroup(
             jLayeredPaneCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPaneCadastroLayout.createSequentialGroup()
-                .addContainerGap(118, Short.MAX_VALUE)
+                .addContainerGap(119, Short.MAX_VALUE)
                 .addGroup(jLayeredPaneCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPaneCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         jLayeredPaneCadastroLayout.setVerticalGroup(
             jLayeredPaneCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,6 +465,7 @@ public class Util extends javax.swing.JFrame {
         jLayeredPaneRelatorio.setBackground(new java.awt.Color(255, 255, 255));
         jLayeredPaneRelatorio.setPreferredSize(new java.awt.Dimension(777, 443));
 
+        tblRegistros.setAutoCreateRowSorter(true);
         tblRegistros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -511,7 +522,7 @@ public class Util extends javax.swing.JFrame {
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPaneTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addGap(0, 107, Short.MAX_VALUE))
         );
         jLayeredPaneRelatorio.setLayer(jScrollPaneRegistros, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneRelatorio.setLayer(jScrollPaneTotais, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -521,6 +532,7 @@ public class Util extends javax.swing.JFrame {
         jLayeredPanePesquisaDetalhada.setBackground(new java.awt.Color(255, 255, 255));
         jLayeredPanePesquisaDetalhada.setPreferredSize(new java.awt.Dimension(777, 443));
 
+        tblRegistrosDetalhados.setAutoCreateRowSorter(true);
         tblRegistrosDetalhados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -563,27 +575,47 @@ public class Util extends javax.swing.JFrame {
             }
         });
 
+        tblTotaisDetalhados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblTotaisDetalhados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPaneTotais1.setViewportView(tblTotaisDetalhados);
+
+        label4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label4.setText("Total");
+
         javax.swing.GroupLayout jLayeredPanePesquisaDetalhadaLayout = new javax.swing.GroupLayout(jLayeredPanePesquisaDetalhada);
         jLayeredPanePesquisaDetalhada.setLayout(jLayeredPanePesquisaDetalhadaLayout);
         jLayeredPanePesquisaDetalhadaLayout.setHorizontalGroup(
             jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
                     .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
-                        .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
-                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDataPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDataPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPesquisarPeriodo)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
+                        .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDataPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(txtDataPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisarPeriodo)))
+                .addContainerGap(449, Short.MAX_VALUE))
+            .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jLayeredPanePesquisaDetalhadaLayout.createSequentialGroup()
+                .addGroup(jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneTotais1, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jLayeredPanePesquisaDetalhadaLayout.setVerticalGroup(
             jLayeredPanePesquisaDetalhadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -597,9 +629,13 @@ public class Util extends javax.swing.JFrame {
                         .addComponent(btnPesquisarPeriodo)))
                 .addGap(15, 15, 15)
                 .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 217, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPaneRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPaneTotais1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 107, Short.MAX_VALUE))
         );
         jLayeredPanePesquisaDetalhada.setLayer(jScrollPaneRegistros1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPanePesquisaDetalhada.setLayer(label3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -607,6 +643,8 @@ public class Util extends javax.swing.JFrame {
         jLayeredPanePesquisaDetalhada.setLayer(txtDataPeriodo1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPanePesquisaDetalhada.setLayer(txtDataPeriodo2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPanePesquisaDetalhada.setLayer(btnPesquisarPeriodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPanePesquisaDetalhada.setLayer(jScrollPaneTotais1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPanePesquisaDetalhada.setLayer(label4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setText("jButton1");
 
@@ -666,17 +704,17 @@ public class Util extends javax.swing.JFrame {
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLayeredPaneCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(81, 81, 81)
                     .addComponent(jLayeredPaneRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(196, Short.MAX_VALUE)))
+                    .addContainerGap(62, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(80, 80, 80)
                     .addComponent(jLayeredPanePesquisaDetalhada, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(145, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -849,8 +887,7 @@ public class Util extends javax.swing.JFrame {
            RegistroDao list = new RegistroDao();
            regs = list.getLista();
 
-           for (Registro x : regs) {
-               
+           for (Registro x : regs) {               
                 Calendar cal = new GregorianCalendar();
                 cal = x.getData();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -971,7 +1008,6 @@ public class Util extends javax.swing.JFrame {
             regs = list.getListaDetalhada(txtDataPeriodo1.getText(), txtDataPeriodo2.getText());
 
             for (Registro x : regs) {
-
                 Calendar cal = new GregorianCalendar();
                 cal = x.getData();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -1005,6 +1041,45 @@ public class Util extends javax.swing.JFrame {
 
         }catch(SQLException e){
 
+        }
+        
+        try{
+            //Cria uma instancia da classe registro
+           Registro total = new Registro();
+           tblTotaisDetalhados.removeAll();
+           
+
+           String[] colunasTotais = new String[]{"Diurno", "Noturno", "Navegação", "Instrumento Real", "Sob Capota"};
+           String[] linhaTotais = new String[5];
+
+           //"Model" para exibicao dos dados na tabela
+           DefaultTableModel modelTotais = new DefaultTableModel(null, colunasTotais);
+
+           //Seta "model" como o modelo da tabela "tblResultado"
+           tblTotaisDetalhados.setModel(modelTotais);
+           
+           RegistroDao listTotais = new RegistroDao();
+           ArrayList<Registro> regsTotais = listTotais.getListaTotaisDetalhados(txtDataPeriodo1.getText(), txtDataPeriodo2.getText());
+
+           for(Registro x : regsTotais) {
+                linhaTotais[0] = (viewHours(x.getDiurno()));                                                                                     
+                linhaTotais[1] = (viewHours(x.getNoturno()));
+                linhaTotais[2] = (viewHours(x.getNavegacao()));
+                linhaTotais[3] = (viewHours(x.getInstrumento()));
+                linhaTotais[4] = (viewHours(x.getCapota()));
+                              
+                modelTotais.addRow(linhaTotais);       
+           }
+          
+          /*for(int i=0; i<13; i++){*/ 
+   
+          //tblRegistros.getColumnModel().getColumn(5).setPreferredWidth(100);
+          /*}*/
+           
+           tblTotaisDetalhados.setFillsViewportHeight(true);
+           
+        }catch(Exception e){
+            
         }
     }//GEN-LAST:event_btnPesquisarPeriodoActionPerformed
 
@@ -1057,9 +1132,16 @@ public class Util extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run(){               
                 Util utl = new Util();
+                try {                 
+                    utl.getContentPane().add(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\Users\\anonymous\\Desktop\\metalBackground.jpg")))));
+                } catch (IOException ex) {
+                    Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 utl.jLayeredPaneRelatorio.setVisible(false);
                 utl.jLayeredPanePesquisaDetalhada.setVisible(false);
                 utl.setVisible(true);
+                utl.getContentPane().setBackground(Color.WHITE);
+                
             }
         });
     }
@@ -1099,13 +1181,16 @@ public class Util extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneRegistros;
     private javax.swing.JScrollPane jScrollPaneRegistros1;
     private javax.swing.JScrollPane jScrollPaneTotais;
+    private javax.swing.JScrollPane jScrollPaneTotais1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
+    private java.awt.Label label4;
     private java.awt.Label label5;
     private javax.swing.JTable tblRegistros;
     private javax.swing.JTable tblRegistrosDetalhados;
     private javax.swing.JTable tblTotais;
+    private javax.swing.JTable tblTotaisDetalhados;
     private javax.swing.JTextField txtAerodromoDestino;
     private javax.swing.JTextField txtAerodromoOrigem;
     private javax.swing.JFormattedTextField txtCapota;
