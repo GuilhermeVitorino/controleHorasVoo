@@ -522,7 +522,7 @@ public class Util extends javax.swing.JFrame {
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPaneTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 107, Short.MAX_VALUE))
+                .addGap(0, 39, Short.MAX_VALUE))
         );
         jLayeredPaneRelatorio.setLayer(jScrollPaneRegistros, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPaneRelatorio.setLayer(jScrollPaneTotais, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -635,7 +635,7 @@ public class Util extends javax.swing.JFrame {
                 .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneTotais1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 107, Short.MAX_VALUE))
+                .addGap(0, 91, Short.MAX_VALUE))
         );
         jLayeredPanePesquisaDetalhada.setLayer(jScrollPaneRegistros1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPanePesquisaDetalhada.setLayer(label3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -647,6 +647,11 @@ public class Util extends javax.swing.JFrame {
         jLayeredPanePesquisaDetalhada.setLayer(label4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenu4.setText("Menu");
 
@@ -721,7 +726,55 @@ public class Util extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+       
+        boolean campoVazio = false;
+        String mensagemCampVazio = "";
+        
+        if(txtData.getText().equals("  /  /    ")){
+            mensagemCampVazio=mensagemCampVazio+"Informe a data!\n";
+            campoVazio=true;
+        }
+        
+        if(txtPousos.getText().equals("")){
+             mensagemCampVazio=mensagemCampVazio+"Informe a quantidade de pousos!\n";
+            campoVazio=true;
+        }
+        
+        if(cbxFuncao.getSelectedIndex()==0){
+             mensagemCampVazio=mensagemCampVazio+"Selecione a função!\n";
+            campoVazio=true;
+        }
+        
+        if(cbxSimulador.getSelectedIndex()==0){
+             mensagemCampVazio=mensagemCampVazio+"Selecione a simulação!\n";
+            campoVazio=true;
+        }
+        
+        if(txtMatricula.getText().equals("")){
+             mensagemCampVazio=mensagemCampVazio+"Informe a matricula!\n";
+            campoVazio=true;
+        }
+        
+        if(txtAerodromoOrigem.getText().equals("")){
+             mensagemCampVazio=mensagemCampVazio+"Informe o aerodromo de origem!\n";
+            campoVazio=true;
+        }
+        
+        if(txtAerodromoDestino.getText().equals("")){
+             mensagemCampVazio=mensagemCampVazio+"Informe o aerodromo de destino!\n";
+            campoVazio=true;
+        }
+        
+        if(txtDiurno.getText().equals("  :  ") && txtNoturno.getText().equals("  :  ") ){
+            mensagemCampVazio=mensagemCampVazio+"Infome a quantidade de horas (diurno e/ou noturno)!\n";
+            campoVazio=true;
+        }
+        
+        if(campoVazio){
+            JOptionPane.showMessageDialog(null, mensagemCampVazio);
+            return;
+        }
+        
         Registro reg = new Registro();
         Calendar data = null;
 
@@ -1089,6 +1142,10 @@ public class Util extends javax.swing.JFrame {
         jLayeredPaneRelatorio.setVisible(false);
         jLayeredPanePesquisaDetalhada.setVisible(true);
     }//GEN-LAST:event_jMenuItemPesquisaDetalhadaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private int stringToMinutes(String str){
        try{
